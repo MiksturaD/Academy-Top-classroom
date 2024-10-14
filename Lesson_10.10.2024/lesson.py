@@ -155,6 +155,7 @@ vm.add(a)
 vm.add(Video(2, 'Name2', 'lastname2', 1740))
 vm.add(Video(3, 'Name3', 'lastname3', 1121))
 
+print('Наша Видеотека')
 v1 = vm.find(3)
 print(v1)
 v2 = vm.find(1)
@@ -162,3 +163,4 @@ print(v2)
 
 vm.rent(2)
 vm.bring_back(2)
+print('Такие вот результаты')
