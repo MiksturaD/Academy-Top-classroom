@@ -44,13 +44,6 @@ class Teacher(Person):
 		notify: str = input('Введите уведомление ,которое хотите направить студентам.')
 		return notify
 
-	@staticmethod
-	def give_a_rating():
-		rate: float = float(input('Введите оценку, которую хотите поставить за курс - '))
-		return rate
-
-	def __repr__(self):
-		return f'Преподаватель  ({self._person_id}, {self._name}, {self._email}, {self._job_title})'
 
 
 class Student(Person):
@@ -71,30 +64,11 @@ class Student(Person):
 		self._tasks_completed.append((task, score))
 		print(f'Студент {self._name} выполнил задание {task._task_name} и получил {score} баллов.')
 
-	def __repr__(self):
-		return f'Студент({self._person_id}, {self._name}, {self._email}, {self._grade})'
-
 
 class Course:
-	def __init__(self, course_name: str, course_length: int, teacher: Teacher, students=None):
-		if students is None:
-			students = []
-		self.__students: list[Student] = students
+	def __init__(self, course_name: str, course_length: int):
 		self.__course_name: str = course_name
 		self.__course_length: int = course_length
-		self.__teacher: Teacher = teacher
-
-	def enroll(self, student: Student):
-		if student in self.__students:
-			raise Exception()
-		self.__students.append(student)
-
-	def __len__(self):
-		return len(self.__students)
-
-	def __repr__(self):
-		return f'Курс({self.__course_name}, {self.__teacher}, ({len(self)}) - часов)'
-
 
 class Task:
 	def __init__(self, task_name: str, description: str):
@@ -104,9 +78,6 @@ class Task:
 	@property
 	def task_name(self):
 		return self._task_name
-
-	def __repr__(self):
-		return f'Задание - ({self.task_name}, {self._description})'
 
 
 class University:
@@ -130,23 +101,14 @@ class University:
 	def add_task(self, task: Task):
 		self.__tasks.append(task)
 
-	def __str__(self):
-		return (f'Преподаватели - {self.__teachers}\n'
-						f'Студенты - {self.__students}\n'
-						f'Курсы - {self.__courses}\n'
-						f'Задания - {self.__tasks}')
 
-	def get_students
-# Вроде бы так, что нужно было сделать по заданию - имеется, по идее можно углубиться
-# и пойти дальше, выбирать какому студенту, за какой курс и задание ставить оценку и все
-# это выводить, но по заданию вроде такого не было :)
 
 u = University()
-u.add_course(Course('Физика', 200))
-u.add_course(Course('Изучение Python', 400))
-u.add_task(Task('Законы Ньютона', 'Изучите все три и расскажите'))
-u.add_task(Task('Чат бот ТГ', 'напишите чат бота за 200 дней'))
-u.add_person(Student(1, 'Андрюха', 'andrey@mail.ru', 5))
-u.add_person(Student(2,'Балбесина','balbes@mail.ru',1))
-u.add_person(Teacher(2, 'Виктор Петрович', '2550033@mail.ru', 'Декан'))
-print(u)
+
+u.add_person(
+	Student(1, 'Андрюха', 'andrey@mail.ru', 5)
+)
+u.add_person(
+	Teacher(2, 'Виктор Петрович', '2550033@mail.ru', 'Декан')
+)
+print(Student)
