@@ -66,32 +66,38 @@ cm.to_file('c2.txt')
 
 class MusicService:
 	def __init__(self, filename: str):
-		self.__music_band: dict[str, str] = MusicService.__from_file(filename)
+		self.__music_band: dict[str, list[str]] = MusicService.__from_file(filename)
 
 	@staticmethod
 	def __from_file(filename: str) -> dict[str, str]:
-		music_band: dict[str, str] = {}
+		music_band: dict[str, list[str]] = {}
 
 		with open(filename, 'r', encoding='utf-8') as f:
 			lines: list[str] = f.readlines()
 			for line in lines:
 				band_name, album = [item.strip() for item in line.split(' ')]
-				music_band[band_name] = album
+				if band_name not in music_band:
+					music_band[band_name] = []
+				music_band[band_name].append(album)
 
 		return music_band
 	def to_file(self, filename: str) -> None:
 		with open(filename, 'w', encoding='utf-8') as f:
-			f.writelines(f'{self.band_name} {album}\n')
+			for band_name, albums in self.__music_band.items():
+				for album in albums:
+					f.write(f'{band_name} {album}\n')
 
 	def add(self, music_band: [str, str]):
 		band_name, album = music_band
-		self.__music_band[band_name] = album
+		if band_name not in self.__music_band:
+			self.__music_band[band_name] = []
+		self.__music_band[band_name].append(album)
 
-	def remove(self, band_name: str):
+	def remove(self, band_name: str) -> None:
 		del self.__music_band[band_name]
 
 	def find(self, album: str) -> str:
-		return self.__music_band[album]
+		return self.__music_band.get(band_name, [])
 
 	def __str__(self) -> str:
 		return str(self.__music_band)
@@ -101,7 +107,7 @@ mb = MusicService('Bands.txt')
 mb.add(('RHCP','The Getaway'))
 mb.add(('Slipknot','The gray chapter'))
 mb.add(('RHCP','Californication'))
-mb.add(('Korn','Thenothing'))
-mb.add(('Metallica','Blackalbum'))
+mb.add(('Korn','The nothing'))
+mb.add(('Metallica','Black album'))
 mb.to_file('Bands.txt')
 print(mb)
