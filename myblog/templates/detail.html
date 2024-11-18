@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Блог {{ posts.title }} </title>
+        <style>
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper > div {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class=wrapper>
+        <h1>{{ posts.title }}</h1>
+        <p>Content {{ posts.content }}</p>
+        <p>Выпущена: {{ posts.pub_date }}</p>
+    </div>
+</body>
