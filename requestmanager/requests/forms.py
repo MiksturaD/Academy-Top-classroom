@@ -1,19 +1,30 @@
-from django import forms
-from .models import Feedback
+import re
 
-class FeedbackForm(forms.Form):
-    name = forms.CharField(max_length=100,label="Ваше имя")
+from django import forms
+from .models import  Product
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'email', 'message']
+        widgets = {
+            'message': forms.Textarea,
+        }
+
     def clean_name(self):
         name = self.cleaned_data['name']
         if "@" in name:
             raise forms.ValidationError("Имя не должно содержать '@'.")
+        elif re.search(r'\d', name):
+            raise forms.ValidationError("Имя не должно содержать цифры.")
         return name
-    email = forms.EmailField(label="Ваш email")
-    message = forms.CharField(widget=forms.Textarea, label="Сообщение")
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        # Дополнительная валидация email, если необходимо
+        return email
 
 
 
-class FeedbackModelForm(forms.ModelForm):
-    class Meta:
-        model = Feedback
-        fields = ['name', 'email', 'message']
+
+
