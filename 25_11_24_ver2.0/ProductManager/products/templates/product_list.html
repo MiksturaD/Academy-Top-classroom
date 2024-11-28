@@ -1,0 +1,36 @@
+{% extends 'products/layout.html' %}
+
+{% block title %}
+<h1>Список продуктов</h1>
+{% endblock %}
+
+{% block content %}
+<body>    
+    <div class="product-add">
+        <a href="{% url 'add_product' %}">Добавить продукт</a>
+    </div>
+    <ul>
+    {% for product in products %}
+        <div>
+            <h1>Продукт с ID {{ product.id }}</h1>
+        </div>
+        <div>
+            <li>Название продукта {{ product.name }}</li>
+        </div>
+        <div>
+            <li>Описание товара {{ product.description }}</li>
+        </div>
+        <div>
+            <li>Стоимость позиции {{ product.price }} рублей</li>
+        </div>
+
+        <div class="product-delete">
+            <a href="{% url 'delete_product' product.id %}" class="button">Удалить продукт</a>
+        </div>
+        <div class="product-delete">
+            <a href="{% url 'edit_product' product.id %}" class="button">Изменить продукт</a>
+        </div>
+    {% endfor %}
+    </ul>
+</body>    
+{% endblock %}

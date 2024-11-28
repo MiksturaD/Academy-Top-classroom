@@ -1,0 +1,27 @@
+{% extends 'products/layout.html' %}
+
+{% block title %}
+<h1>Редактирование продукта</h1>
+{% endblock %}
+
+{% block content %}
+<body>
+<h1>Изменение продукта ID {{ product.id }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div>
+            <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+            {{ form.name }}
+        </div>
+        <div>
+            <label for="{{ form.description.id_for_label }}">{{ form.description.label }}</label>
+            {{ form.description }}
+        </div>
+        <div>
+            <label for="{{ form.price.id_for_label }}">{{ form.price.label }}</label>
+            {{ form.price }}
+        </div>
+        <button type="submit">Отправить</button>
+    </form>
+</body>    
+{% endblock %}
