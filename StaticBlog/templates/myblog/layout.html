@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>{% block title %}My Blog{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'js/script.js' %}">
+</head>
+<body>
+    {% include 'partials/header.html' %}
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    {% include 'partials/footer.html' %}
+</body>
+</html>
