@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -17,10 +18,11 @@
         }
     </style>
 </head>
-
+{% extends 'blog/layout.html' %}
 <body class="wrapper">
     <div>
       <h1>Блог такой блог</h1>
+
     </div>
     <ul>
     {% for post in posts %}

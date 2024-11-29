@@ -1,0 +1,43 @@
+body {
+    background-color: cadetblue;
+}
+.container {
+    margin-left: 10px !important;
+}
+.row {
+    width: 80%!important;
+    margin: 5px;
+
+}
+.form-floating{
+    margin: 10px;
+}
+.carousel-item img {
+    display: block;    /* Убедитесь, что изображение является блочным элементом */
+    margin: 0 auto;    /* Центрирует изображение по горизонтали */
+    max-height: 400px; /* Установите желаемую максимальную высоту */
+    max-width: 100%;   /* Установите максимальную ширину в 100% для адаптивности */
+    object-fit: cover; /* Сохраняет пропорции изображения */
+}
+
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%; /* Уменьшите ширину стрелок */
+    padding: 0; /* Удалите внутренние отступы */
+    top: 50%;  /* Позиционируйте стрелки по центру по вертикали */
+    transform: translateY(-50%); /* Смещение стрелок вверх на половину своей высоты */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-size: 100% 100%; /* Увеличьте размер иконок */
+}
+
+.carousel-control-prev {
+    margin-left: 0%; /* Сдвиньте стрелку влево */
+}
+
+.carousel-control-next {
+
+}
