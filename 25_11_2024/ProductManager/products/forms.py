@@ -1,14 +1,14 @@
 import re
 
 from django import forms
-from .models import  Product
+from .models import  Products
 
 class ProductForm(forms.ModelForm):
     class Meta:
-        model = Product
-        fields = ['name', 'email', 'message']
+        model = Products
+        fields = ['name', 'description', 'price']
         widgets = {
-            'message': forms.Textarea,
+            'price': forms.NumberInput
         }
 
     def clean_name(self):
@@ -19,10 +19,7 @@ class ProductForm(forms.ModelForm):
             raise forms.ValidationError("Имя не должно содержать цифры.")
         return name
 
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        # Дополнительная валидация email, если необходимо
-        return email
+
 
 
 
