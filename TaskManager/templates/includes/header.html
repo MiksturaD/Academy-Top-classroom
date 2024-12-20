@@ -17,6 +17,14 @@
             <a class="nav-link" href="{% url 'tasks' %}">Задачи</a>
           </li>
         </ul>
+    <div class="ms-auto">
+        {% if user.is_authenticated %}
+            <span class="me-3">{{ user.last_name }} {{ user.first_name }}</span>
+            <a href="{% url 'signout' %}" class="btn btn-dark">Выйти</a>
+        {% else %}
+            <a href="{% url 'signin' %}" class="btn btn-dark">Войти</a>
+        {% endif %}
+    </div>
       </div>
     </div>
   </nav>
