@@ -10,6 +10,10 @@ def index(request):
   return render(request, 'tasks/index.html')
 
 @login_required
+def main(request):
+  return render(request, 'tasks/main.html')
+
+@login_required
 def projects(request):
   projects_list = Project.objects.all()
   return render(request, 'project/list.html', context={'projects': projects_list})
@@ -90,7 +94,7 @@ def signin(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
       login(request, user)  # Вход пользователя
-      return redirect('index')  # Перенаправление после успешного входа
+      return redirect('main')  # Перенаправление после успешного входа
     else:
       # Ошибка входа
       return render(request, 'auth/signin.html', {'error': 'Неверный логин или пароль'})
